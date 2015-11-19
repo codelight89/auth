@@ -1,0 +1,6 @@
+/.env
+/.idea
+/bower_components
+db.sqlite3
+*.pyc
+auth_project/local_settings.py

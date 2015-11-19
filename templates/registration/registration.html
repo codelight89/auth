@@ -1,0 +1,44 @@
+{% extends 'registration/base.html' %}
+{% load staticfiles %}
+{% block title %}Registration{% endblock %}
+{% block content %}
+    <div class="container">
+        <form class="form-signin" action="" method="post">
+            <h2 class="form-signin-heading">Sign Up</h2>
+            {% csrf_token %}
+
+
+            <input type="email" id="id_email" class="form-control" maxlength="150" name="email"
+                   placeholder="email" required autofocus/>
+            <input type="password" id="id_password1" name="password1" class="form-control"
+                   placeholder="Password" required/>
+            <input type="password" id="id_password2" name="password2" class=" form-control"
+                   placeholder="Re-enter password" required/>
+
+
+            <button class="btn btn-lg btn-primary btn-block " type="submit">Sign Up</button>
+            <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><img class="icon" title="Facebook"
+                                                                                       alt="Sign Up with Facebook"
+                                                                                       src="{% static "images/facebook.png" %}"></a>
+            <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}"><img class="icon" title="Twitter"
+                                                                                      alt="Sign Up with Twitter"
+                                                                                      src="{% static "images/twitter.png" %}"></a>
+            {% for error in form.non_field_errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in  form.email.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in  form.password1.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+            {% for error in  form.password2.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+
+
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ greeting }}{% endblock %}</title>
+    {% load staticfiles %}
+
+    <link href="{% static "bootstrap/dist/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/signin.css" %}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container container-style">
+
+    {% block content %}
+        <div class="form-signin">
+            <h2 class="form-signin-heading">Hello
+                {% if user.is_authenticated %}
+                    , {{ username }}! </h2>
+
+                {% else %}   !
+
+                {% endif %}
+            {% if user.is_authenticated %}
+                <form action="/logout">
+                    <button class="btn btn-lg btn-primary btn-block btn-index" type="submit">Log Out</button>
+                </form>
+
+            {% else %}
+                <form action="/login">
+                    <button class="btn btn-lg btn-primary btn-block btn-index" type="submit">Log In</button>
+                </form>
+            {% endif %}
+
+
+        </div>
+    {% endblock %}
+
+</div>
+
+
+</body>
+</html>
